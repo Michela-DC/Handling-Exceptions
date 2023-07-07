@@ -18,27 +18,23 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Insert a number: ");
-        Scanner userInput = new Scanner(System.in).useLocale(Locale.US);
-        // Mi dava InputMismatchException, quindi ho aggiunto .useLocale(Locale.US) to sets this scanner's locale object to the specified locale.
-        // The Java Locale class object represents a specific geographic, cultural, or political region.
-        // se non mettessi .useLocale(Locale.US) dovrei inserire i decimali con la virgola e non con il punto perché il locale italiano, di default il mio, vuole le decimali con la virgola
-
-        double inputNumber = userInput.nextDouble();
-
-        checkScore(inputNumber);
-    }
-    public static void checkScore(double score) {
         try{
-            if (score > 0 && score <= 50.00) {
-                System.out.println("Average score");
-            } else if(score > 50.00 && score <= 100.00) {
-                System.out.println("Very good score");
-            } else {
-                throw new ArithmeticException("score is out of scale!");
-            }
+            checkScore(2.15);
+            checkScore(50);
+            checkScore(95.02);
+            checkScore(100.01);
         } catch (ArithmeticException exception) {
             System.out.println("Error: " + exception.getMessage());
+            //exception.printStackTrace(); //mostra la riga esatta in cui si ha l'eccezione
+        }
+    }
+    public static void checkScore(double score) {
+        if (score > 0 && score <= 50.00) {
+            System.out.println("Average score");
+        } else if(score > 50.00 && score <= 100.00) {
+            System.out.println("Very good score");
+        } else {
+            throw new ArithmeticException("score is out of scale!");
         }
     }
 }
